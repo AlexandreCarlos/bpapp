@@ -1,0 +1,33 @@
+
+{% extends "layout.html" %}
+{% block content %}
+{#    <h1>Welcome {{ session.username }}</h1>#}
+    <div class="container-narrow">
+        <h1>Blood pressure entry for {{ current_user.first_name }} {{ current_user.last_name }}</h1>
+        <br/>
+        <form id="logentryForm" class="form form-register" method="POST" action="" role="form">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.systolic.label }}
+                {{ form.systolic(placeholder="Systolic (mmHg)", class_="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.diastolic.label }}
+                {{ form.diastolic(placeholder="Diastolic (mmHg)", class_="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.heart_beats.label }}
+                {{ form.heart_beats(placeholder="Heart beats/minute", class_="form-control") }}
+            </div>
+            <div><br/></div>
+            <div class="form-group">
+                {{ form.measured_at.label }}
+                {{ form.measured_at(placeholder="Date time", class_="form-control") }}
+            </div>
+            <br/>
+            <p><input class="btn btn-default btn-submit" type="submit" value="Register"></p>
+        </form>
+
+    </div>
+{% endblock %}
+

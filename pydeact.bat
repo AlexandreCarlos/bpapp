@@ -1,0 +1,1 @@
+C:\Users\Alexandre\MyVenv\bpapp\Scripts\deactivate.bat

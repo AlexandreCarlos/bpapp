@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 """User forms."""
 from flask_wtf import Form
-from wtforms import PasswordField, StringField
-from wtforms.validators import DataRequired, Email, EqualTo, Length
-
-from .models import User
+from wtforms import PasswordField, StringField, IntegerField, DateTimeField
+from wtforms.validators import DataRequired, Email, EqualTo, Length, NumberRange
+import datetime as dt
+from .models import User, PressureLog
 
 
 class RegisterForm(Form):
@@ -18,6 +18,9 @@ class RegisterForm(Form):
                              validators=[DataRequired(), Length(min=6, max=40)])
     confirm = PasswordField('Verify password',
                             [DataRequired(), EqualTo('password', message='Passwords must match')])
+
+    first_name = StringField('First name', validators=[Length(min=1, max=30)])
+    last_name = StringField('Last name', validators=[Length(min=1, max=30)])
 
     def __init__(self, *args, **kwargs):
         """Create instance."""
@@ -38,3 +41,16 @@ class RegisterForm(Form):
             self.email.errors.append('Email already registered')
             return False
         return True
+
+
+class LogEntryForm(Form):
+    """
+        Blood pressure diary entry form
+    """
+
+    systolic = IntegerField(label='Systolic pressure (mmHg)', validators=[DataRequired(), NumberRange(min=30, max=300)])
+    diastolic = IntegerField(label='Diastolic pressure (mmHg)', validators=[DataRequired(), NumberRange(min=30, max=300)])
+    heart_beats = IntegerField(label='Heart beats/min', validators=[DataRequired(), NumberRange(min=30, max=300)])
+
+    measured_at = DateTimeField(label='Date time', validators=[DataRequired()],
+                                format='%Y-%m-%d %H:%M:%S', default=dt.datetime.utcnow)

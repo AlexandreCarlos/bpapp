@@ -63,3 +63,18 @@ class User(UserMixin, SurrogatePK, Model):
     def __repr__(self):
         """Represent instance as a unique string."""
         return '<User({username!r})>'.format(username=self.username)
+
+
+class PressureLog (SurrogatePK, Model):
+    """ Blood pressure diary log
+    """
+    __tablename__ = 'pressure_log'
+
+    systolic = Column(db.Integer, nullable=False, default=0)
+    diastolic = Column(db.Integer, nullable=False, default=0)
+    heart_beats = Column(db.Integer, nullable=False, default=0)
+    measured_at = Column(db.DateTime, nullable=False, default=dt.datetime.utcnow)
+
+    def __repr__(self):
+        return 'Blood pressure entry for {3}: Systolic({0}) Diastolic({1}) Heart beats({2})'\
+            .format(self.systolic, self.diastolic, self.heart_beats, self.measured_at)
