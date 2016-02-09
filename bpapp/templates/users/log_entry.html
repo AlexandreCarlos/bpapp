@@ -1,30 +1,77 @@
-
 {% extends "layout.html" %}
 {% block content %}
-{#    <h1>Welcome {{ session.username }}</h1>#}
+    {#    <h1>Welcome {{ session.username }}</h1>#}
     <div class="container-narrow">
         <h1>Blood pressure entry for {{ current_user.first_name }} {{ current_user.last_name }}</h1>
         <br/>
-        <form id="logentryForm" class="form form-register" method="POST" action="" role="form">
+        <form id="logentryForm" class="form-horizontal" method="POST" action="" role="form">
             {{ form.hidden_tag() }}
             <div class="form-group">
-                {{ form.systolic.label }}
-                {{ form.systolic(placeholder="Systolic (mmHg)", class_="form-control") }}
+                {{ form.systolic.label(class_="col-sm-2 control-label") }}
+                <div class="col-sm-10">
+                    {{ form.systolic(placeholder="Systolic pressure (mmHg)", class_="form-control", type="number") }}
+                </div>
             </div>
             <div class="form-group">
-                {{ form.diastolic.label }}
-                {{ form.diastolic(placeholder="Diastolic (mmHg)", class_="form-control") }}
+                {{ form.diastolic.label(class_="col-sm-2 control-label") }}
+                <div class="col-sm-10">
+                    {{ form.diastolic(placeholder="Diastolic pressure (mmHg)", class_="form-control", type="number") }}
+                </div>
             </div>
             <div class="form-group">
-                {{ form.heart_beats.label }}
-                {{ form.heart_beats(placeholder="Heart beats/minute", class_="form-control") }}
+                {{ form.heart_beats.label(class_="col-sm-2 control-label") }}
+                <div class="col-sm-10">
+                    {{ form.heart_beats(placeholder="Heart beats/minute", class_="form-control", type="number") }}
+                </div>
             </div>
-            <div><br/></div>
-            <div class="form-group">
-                {{ form.measured_at.label }}
-                {{ form.measured_at(placeholder="Date time", class_="form-control") }}
+            <div>
+                <hr/>
             </div>
+     {#       <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            #}{#                            {{ form.measured_at.label(class_="col-sm-2 control-label") }}#}{#
+                            <div class="input-group date" id="measured_at">
+                                {{ form.measured_at(class_="form-control", type="text", id="") }}
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#measured_at').datetimepicker({
+                                locale: 'pt'
+                            });
+                        });
+                    </script>
+                </div>
+            </div>#}
             <br/>
+            <hr>
+            <div class="container">
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker2'>
+                                <input type='text' class="form-control"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#datetimepicker2').datetimepicker({
+                                locale: 'ru'
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
             <p><input class="btn btn-default btn-submit" type="submit" value="Register"></p>
         </form>
 

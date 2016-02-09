@@ -48,9 +48,9 @@ class LogEntryForm(Form):
         Blood pressure diary entry form
     """
 
-    systolic = IntegerField(label='Systolic pressure (mmHg)', validators=[DataRequired(), NumberRange(min=30, max=300)])
-    diastolic = IntegerField(label='Diastolic pressure (mmHg)', validators=[DataRequired(), NumberRange(min=30, max=300)])
-    heart_beats = IntegerField(label='Heart beats/min', validators=[DataRequired(), NumberRange(min=30, max=300)])
+    systolic = IntegerField(label='Systolic', validators=[DataRequired(), NumberRange(min=30, max=300)])
+    diastolic = IntegerField(label='Diastolic', validators=[DataRequired(), NumberRange(min=30, max=300)])
+    heart_beats = IntegerField(label='Heart beats', validators=[DataRequired(), NumberRange(min=30, max=300)])
 
     measured_at = DateTimeField(label='Date time', validators=[DataRequired()],
-                                format='%Y-%m-%d %H:%M:%S', default=dt.datetime.utcnow)
+                                format='%Y-%m-%d %H:%M', default=dt.datetime.utcnow)
